@@ -1,0 +1,7 @@
+﻿------ Build started: Project: AE_HMMP_SV01, Configuration: Debug x86 ------
+C:\Abeo Projects\HMMP\Source\AE_HMMP_SV01\AE_HMMP_SV01\modAPInvoice.vb(1297) : warning BC42024: Unused local variable: 'sType'.
+C:\Abeo Projects\HMMP\Source\AE_HMMP_SV01\AE_HMMP_SV01\modAPInvoice_Writeoff.vb(548) : warning BC42024: Unused local variable: 'sType'.
+C:\Abeo Projects\HMMP\Source\AE_HMMP_SV01\AE_HMMP_SV01\modARInvoice_Cardcode.vb(479) : warning BC42353: Function 'ProcessARInvoice_OLD' doesn't return a value on all code paths. Are you missing a 'Return' statement?
+C:\Abeo Projects\HMMP\Source\AE_HMMP_SV01\AE_HMMP_SV01\modCommon.vb(978) : warning BC42104: Variable 'oCon' is used before it has been assigned a value. A null reference exception could result at runtime.
+  AE_HMMP_SV01 -> C:\Abeo Projects\HMMP\Source\AE_HMMP_SV01\AE_HMMP_SV01\bin\Debug\AE_HMMP_SV01.exe
+========== Build: 1 succeeded or up-to-date, 0 failed, 0 skipped ==========
