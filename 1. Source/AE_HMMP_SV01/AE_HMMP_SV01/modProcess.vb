@@ -450,8 +450,8 @@
                     oDVData = GetDataViewFromExcel(file.FullName, file.Extension)
 
                     If Not oDVData Is Nothing Then
-                        If p_iDebugMode = DEBUG_ON Then Call WriteToLogFile_Debug("Calling processHMDCDatas()", sFuncName)
-                        Console.WriteLine("Processing CMMS(HMDC) excel file " & sFileName)
+                        If p_iDebugMode = DEBUG_ON Then Call WriteToLogFile_Debug("Calling ProcessHMMPDDatas()", sFuncName)
+                        Console.WriteLine("Processing CMMS(HMMPD) excel file " & sFileName)
                         If ProcessHMMPDDatas(oDVData, file, sErrDesc) <> RTN_SUCCESS Then Throw New ArgumentException(sErrDesc)
                     Else
                         If p_iDebugMode = DEBUG_ON Then Call WriteToLogFile_Debug("No Data's found in excel. File Name :" & file.Name, sFuncName)

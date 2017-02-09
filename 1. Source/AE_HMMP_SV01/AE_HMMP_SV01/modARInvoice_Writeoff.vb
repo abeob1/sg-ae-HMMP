@@ -115,6 +115,7 @@
                     End If
 
                     odtDatatable.Rows(intRow)("F1") = sCompName
+                    odtDatatable.Rows(intRow)("F5") = sClinicCode.ToUpper()
                     odtDatatable.Rows(intRow)("F24") = sDiagDesc
                     odtDatatable.Rows(intRow)("F30") = sRemarks
                     odtDatatable.Rows(intRow)("CostCenter") = sCostCenter

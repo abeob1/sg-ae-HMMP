@@ -49,6 +49,7 @@
                 If Not (odtDatatable.Rows(intRow).Item(0).ToString.Trim() = String.Empty Or odtDatatable.Rows(intRow).Item(0).ToString.ToUpper().Trim() = "INVOICE") Then
                     Console.WriteLine("Processing excel line " & intRow & " to get MBMS and Insurer from config table")
 
+                    Dim sCliniCode As String = odtDatatable.Rows(intRow).Item(1).ToString
                     Dim sCompCode As String = odtDatatable.Rows(intRow).Item(6).ToString
                     Dim sCompName As String = odtDatatable.Rows(intRow).Item(5).ToString
                     sCompName = sCompName.Replace("'", " ")
@@ -124,6 +125,7 @@
                         Throw New ArgumentException(sErrDesc)
                     End If
 
+                    odtDatatable.Rows(intRow)("F2") = sCliniCode.ToUpper()
                     odtDatatable.Rows(intRow)("F6") = sCompName
                     odtDatatable.Rows(intRow)("CostCenter") = sCostCenter
                     odtDatatable.Rows(intRow)("Insurer") = sInsurer

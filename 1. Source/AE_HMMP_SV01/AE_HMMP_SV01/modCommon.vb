@@ -877,7 +877,7 @@ Module modCommon
 #End Region
 #Region "Get Single string value"
     Public Function GetStringValue(ByVal sSql As String, ByVal sDbName As String) As String
-        Dim sFuncName As String = "GetItemCode"
+        Dim sFuncName As String = "GetStringValue"
         Dim oDs As DataSet
         Dim sValue As String = String.Empty
 

@@ -43,6 +43,7 @@ Module modSalesOrder
                     Dim sCompName As String = odtDatatable.Rows(intRow).Item(0).ToString
                     sCompName = sCompName.Replace("'", " ")
                     Dim sSchemeCode As String = odtDatatable.Rows(intRow).Item(3).ToString
+                    Dim sClinicCode As String = odtDatatable.Rows(intRow).Item(4).ToString
                     Dim sRemarks As String = odtDatatable.Rows(intRow).Item(29).ToString
                     sRemarks = sRemarks.Replace("'", " ")
                     Dim sDiagDesc As String = odtDatatable.Rows(intRow).Item(23).ToString
@@ -106,6 +107,7 @@ Module modSalesOrder
                     End If
 
                     odtDatatable.Rows(intRow)("F1") = sCompName
+                    odtDatatable.Rows(intRow)("F5") = sClinicCode.ToUpper()
                     odtDatatable.Rows(intRow)("F24") = sDiagDesc
                     odtDatatable.Rows(intRow)("F30") = sRemarks
                     odtDatatable.Rows(intRow)("CostCenter") = sCostCenter

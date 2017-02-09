@@ -62,87 +62,97 @@
                 If Not (odtDatatable.Rows(intRow).Item(0).ToString.Trim() = String.Empty Or odtDatatable.Rows(intRow).Item(0).ToString.ToUpper().Trim() = "INVOICE") Then
                     Console.WriteLine("Processing excel line " & intRow)
 
-                    Dim sCompCode As String = odtDatatable.Rows(intRow).Item(25).ToString
-                    If sCompCode = "" Then
-                        sErrDesc = "Company Code should not be empty / Check Line " & intRow
-                        Call WriteToLogFile(sErrDesc, sFuncName)
-                        Console.WriteLine(sErrDesc)
-                        Throw New ArgumentException(sErrDesc)
+                    Dim sCustomerType As String = String.Empty
+                    sCustomerType = odtDatatable.Rows(intRow).Item(33).ToString
+
+                    If sCustomerType.ToUpper() = "CONTRACT" Then
+                        Dim sCompCode As String = odtDatatable.Rows(intRow).Item(25).ToString
+                        If sCompCode = "" Then
+                            sErrDesc = "Company Code should not be empty / Check Line " & intRow
+                            Call WriteToLogFile(sErrDesc, sFuncName)
+                            Console.WriteLine(sErrDesc)
+                            Throw New ArgumentException(sErrDesc)
+                        End If
+
+                        Dim sTreatment As String = odtDatatable.Rows(intRow).Item(11).ToString
+                        sTreatment = sTreatment.Replace("'", " ")
+
+                        Dim sInvoice As String = odtDatatable.Rows(intRow).Item(0).ToString.Trim
+                        dtInvoice_ARDetails.DefaultView.RowFilter = "U_invoice = '" & sInvoice & "'"
+                        If dtInvoice_ARDetails.DefaultView.Count > 0 Then
+                            sErrDesc = "A/R Invoice has been created previously for invoice no :: " & sInvoice
+                            Console.WriteLine(sErrDesc)
+                            Call WriteToLogFile(sErrDesc, sFuncName)
+                            Throw New ArgumentException(sErrDesc)
+                        End If
+
+                        dtInvoice_APDetails.DefaultView.RowFilter = "U_invoice = '" & sInvoice & "'"
+                        If dtInvoice_APDetails.DefaultView.Count > 0 Then
+                            sErrDesc = "A/p Invoice has been created previously for invoice no :: " & sInvoice
+                            Console.WriteLine(sErrDesc)
+                            Call WriteToLogFile(sErrDesc, sFuncName)
+                            Throw New ArgumentException(sErrDesc)
+                        End If
+
+                        Dim sArCode As String = "C" & sCompCode
+                        Dim sClinicCode As String = odtDatatable.Rows(intRow).Item(1).ToString
+                        'Dim sSubCode As String = odtDatatable.Rows(intRow).Item(2).ToString
+                        Dim sAPCode As String = "V" & sClinicCode '& sSubCode
+
+                        dtCardCode.DefaultView.RowFilter = "CardCode = '" & sAPCode & "'"
+                        If dtCardCode.DefaultView.Count = 0 Then
+                            sErrDesc = "CardCode not found in SAP. Ap Code :: " & sAPCode
+                            Console.WriteLine(sErrDesc)
+                            Call WriteToLogFile(sErrDesc, sFuncName)
+                            Throw New ArgumentException(sErrDesc)
+                        End If
+
+                        Dim iIndex As Integer = odtDatatable.Rows(intRow).Item(4).ToString.IndexOf(" ")
+                        Dim sDate As String = odtDatatable.Rows(intRow).Item(4).ToString.Substring(0, iIndex)
+                        Dim dt As Date
+                        Dim format() = {"dd/MM/yyyy", "d/M/yyyy", "dd-MM-yyyy", "dd.MM.yyyy", "yyyyMMdd", "MMddYYYY", "M/dd/yyyy", "MM/dd/YYYY"}
+                        Date.TryParseExact(sDate, format, System.Globalization.DateTimeFormatInfo.InvariantInfo, Globalization.DateTimeStyles.None, dt)
+
+                        Dim sSchemeCode As String = odtDatatable.Rows(intRow).Item(26).ToString
+                        Dim dIncurMnth As Date = CDate(dt.Date.AddDays(-(dt.Day - 1)).AddMonths(1).AddDays(-1).ToString())
+
+                        Dim sCostCenter As String '= GetCostCenter(sCompCode, dt, sSchemeCode, p_oCompDef.sHMMPDSAPDbName)
+                        'sSql = "SELECT TOP 1 ""U_MBMS"" FROM " & p_oCompDef.sHMMPDSAPDbName & ".""@AE_MBMS"" WHERE ""U_company_code"" = '" & sCompCode & "' AND ""U_Effective_Date"" <= '" & dt.ToString("yyyy-MM-dd") & "' " & _
+                        '       " AND ""U_Scheme"" = '" & sSchemeCode & "' ORDER BY ""U_Effective_Date"" DESC "
+
+                        sSql = "SELECT B.""PrcCode"" AS ""U_MBMS"" FROM " & p_oCompDef.sHMMPDSAPDbName & ".""@AE_MBMS"" A " & _
+                               " INNER JOIN " & p_oCompDef.sHMMPDSAPDbName & ".""OPRC"" B ON UPPER(B.""PrcCode"") = UPPER(A.""U_MBMS"") " & _
+                               " WHERE A.""U_company_code"" = '" & sCompCode & "' AND A.""U_Effective_Date"" <= '" & dt.ToString("yyyy-MM-dd") & "' " & _
+                               " AND A.""U_Scheme"" = '" & sSchemeCode & "' ORDER BY A.""U_Effective_Date"" DESC "
+
+                        If p_iDebugMode = DEBUG_ON Then Call WriteToLogFile_Debug("Executing SQL" & sSql, sFuncName)
+                        sCostCenter = GetStringValue(sSql, p_oCompDef.sHMMPDSAPDbName)
+
+                        Dim dInvoiceDate As Date
+                        Date.TryParseExact(sFileDate, format, System.Globalization.DateTimeFormatInfo.InvariantInfo, Globalization.DateTimeStyles.None, dInvoiceDate)
+
+                        If sSchemeCode = "" Then
+                            sErrDesc = "Scheme Code is mandatory/Check in Excel line " & intRow
+                            Call WriteToLogFile(sErrDesc, sFuncName)
+                            Console.WriteLine(sErrDesc)
+                            Throw New ArgumentException(sErrDesc)
+                        End If
+
+                        If sCostCenter = "" Then
+                            sErrDesc = "MBMS column cannot be null / Check Cost Center for respective company code in config table/Check line " & intRow
+                            Call WriteToLogFile(sErrDesc, sFuncName)
+                            Console.WriteLine(sErrDesc)
+                            Throw New ArgumentException(sErrDesc)
+                        End If
+
+                        odtDatatable.Rows(intRow)("F2") = sClinicCode.ToUpper()
+                        odtDatatable.Rows(intRow)("F12") = sTreatment
+                        odtDatatable.Rows(intRow)("IncuredMonth") = dIncurMnth
+                        odtDatatable.Rows(intRow)("ArCode") = sArCode
+                        odtDatatable.Rows(intRow)("ApCode") = sAPCode
+                        odtDatatable.Rows(intRow)("InvoiceDate") = dInvoiceDate
+                        odtDatatable.Rows(intRow)("CostCenter") = sCostCenter.ToUpper()
                     End If
-
-                    Dim sInvoice As String = odtDatatable.Rows(intRow).Item(0).ToString.Trim
-                    dtInvoice_ARDetails.DefaultView.RowFilter = "U_invoice = '" & sInvoice & "'"
-                    If dtInvoice_ARDetails.DefaultView.Count > 0 Then
-                        sErrDesc = "A/R Invoice has been created previously for invoice no :: " & sInvoice
-                        Console.WriteLine(sErrDesc)
-                        Call WriteToLogFile(sErrDesc, sFuncName)
-                        Throw New ArgumentException(sErrDesc)
-                    End If
-
-                    dtInvoice_APDetails.DefaultView.RowFilter = "U_invoice = '" & sInvoice & "'"
-                    If dtInvoice_APDetails.DefaultView.Count > 0 Then
-                        sErrDesc = "A/p Invoice has been created previously for invoice no :: " & sInvoice
-                        Console.WriteLine(sErrDesc)
-                        Call WriteToLogFile(sErrDesc, sFuncName)
-                        Throw New ArgumentException(sErrDesc)
-                    End If
-
-                    Dim sArCode As String = "C" & sCompCode
-                    Dim sClinicCode As String = odtDatatable.Rows(intRow).Item(1).ToString
-                    'Dim sSubCode As String = odtDatatable.Rows(intRow).Item(2).ToString
-                    Dim sAPCode As String = "V" & sClinicCode '& sSubCode
-
-                    dtCardCode.DefaultView.RowFilter = "CardCode = '" & sAPCode & "'"
-                    If dtCardCode.DefaultView.Count = 0 Then
-                        sErrDesc = "CardCode not found in SAP. Ap Code :: " & sAPCode
-                        Console.WriteLine(sErrDesc)
-                        Call WriteToLogFile(sErrDesc, sFuncName)
-                        Throw New ArgumentException(sErrDesc)
-                    End If
-
-                    Dim iIndex As Integer = odtDatatable.Rows(intRow).Item(4).ToString.IndexOf(" ")
-                    Dim sDate As String = odtDatatable.Rows(intRow).Item(4).ToString.Substring(0, iIndex)
-                    Dim dt As Date
-                    Dim format() = {"dd/MM/yyyy", "d/M/yyyy", "dd-MM-yyyy", "dd.MM.yyyy", "yyyyMMdd", "MMddYYYY", "M/dd/yyyy", "MM/dd/YYYY"}
-                    Date.TryParseExact(sDate, format, System.Globalization.DateTimeFormatInfo.InvariantInfo, Globalization.DateTimeStyles.None, dt)
-
-                    Dim sSchemeCode As String = odtDatatable.Rows(intRow).Item(26).ToString
-                    Dim dIncurMnth As Date = CDate(dt.Date.AddDays(-(dt.Day - 1)).AddMonths(1).AddDays(-1).ToString())
-
-                    Dim sCostCenter As String '= GetCostCenter(sCompCode, dt, sSchemeCode, p_oCompDef.sHMMPDSAPDbName)
-                    'sSql = "SELECT TOP 1 ""U_MBMS"" FROM " & p_oCompDef.sHMMPDSAPDbName & ".""@AE_MBMS"" WHERE ""U_company_code"" = '" & sCompCode & "' AND ""U_Effective_Date"" <= '" & dt.ToString("yyyy-MM-dd") & "' " & _
-                    '       " AND ""U_Scheme"" = '" & sSchemeCode & "' ORDER BY ""U_Effective_Date"" DESC "
-
-                    sSql = "SELECT B.""PrcCode"" AS ""U_MBMS"" FROM " & p_oCompDef.sHMMPDSAPDbName & ".""@AE_MBMS"" A " & _
-                           " INNER JOIN " & p_oCompDef.sHMMPDSAPDbName & ".""OPRC"" B ON UPPER(B.""PrcCode"") = UPPER(A.""U_MBMS"") " & _
-                           " WHERE A.""U_company_code"" = '" & sCompCode & "' AND A.""U_Effective_Date"" <= '" & dt.ToString("yyyy-MM-dd") & "' " & _
-                           " AND A.""U_Scheme"" = '" & sSchemeCode & "' ORDER BY A.""U_Effective_Date"" DESC "
-
-                    If p_iDebugMode = DEBUG_ON Then Call WriteToLogFile_Debug("Executing SQL" & sSql, sFuncName)
-                    sCostCenter = GetStringValue(sSql, p_oCompDef.sHMMPDSAPDbName)
-
-                    Dim dInvoiceDate As Date
-                    Date.TryParseExact(sFileDate, format, System.Globalization.DateTimeFormatInfo.InvariantInfo, Globalization.DateTimeStyles.None, dInvoiceDate)
-
-                    If sSchemeCode = "" Then
-                        sErrDesc = "Scheme Code is mandatory/Check in Excel line " & intRow
-                        Call WriteToLogFile(sErrDesc, sFuncName)
-                        Console.WriteLine(sErrDesc)
-                        Throw New ArgumentException(sErrDesc)
-                    End If
-
-                    If sCostCenter = "" Then
-                        sErrDesc = "MBMS column cannot be null / Check Cost Center for respective company code in config table/Check line " & intRow
-                        Call WriteToLogFile(sErrDesc, sFuncName)
-                        Console.WriteLine(sErrDesc)
-                        Throw New ArgumentException(sErrDesc)
-                    End If
-
-                    odtDatatable.Rows(intRow)("IncuredMonth") = dIncurMnth
-                    odtDatatable.Rows(intRow)("ArCode") = sArCode
-                    odtDatatable.Rows(intRow)("ApCode") = sAPCode
-                    odtDatatable.Rows(intRow)("InvoiceDate") = dInvoiceDate
-                    odtDatatable.Rows(intRow)("CostCenter") = sCostCenter.ToUpper()
                 End If
             Next
 

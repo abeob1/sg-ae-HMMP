@@ -50,6 +50,9 @@
                         Throw New ArgumentException(sErrDesc)
                     End If
 
+                    Dim sTreatment As String = odtDatatable.Rows(intRow).Item(11).ToString
+                    sTreatment = sTreatment.Replace("'", " ")
+
                     Dim sInvoice As String = odtDatatable.Rows(intRow).Item(0).ToString.Trim
                     dtInvoice_ARDetails.DefaultView.RowFilter = "U_invoice = '" & sInvoice & "'"
                     If dtInvoice_ARDetails.DefaultView.Count > 0 Then
@@ -83,6 +86,8 @@
                     Dim dInvoiceDate As Date
                     Date.TryParseExact(sFileDate, format, System.Globalization.DateTimeFormatInfo.InvariantInfo, Globalization.DateTimeStyles.None, dInvoiceDate)
 
+                    odtDatatable.Rows(intRow)("F2") = sClinicCode.ToUpper()
+                    odtDatatable.Rows(intRow)("F12") = sTreatment
                     odtDatatable.Rows(intRow)("IncuredMonth") = dIncurMnth
                     odtDatatable.Rows(intRow)("ArCode") = sArCode
                     odtDatatable.Rows(intRow)("ApCode") = sAPCode
@@ -815,7 +820,9 @@
                 sVatGroup = dtCardCode.DefaultView.Item(0)(1).ToString().Trim()
             End If
 
-            sSql = "SELECT ""U_DefBank"" FROM " & p_oCompDef.sHMDCSAPDbName & ".""OPRC"" WHERE ""PrcCode"" = '" & sClinicCode & "'"
+            'sSql = "SELECT ""U_DefBank"" FROM " & p_oCompDef.sHMDCSAPDbName & ".""OPRC"" WHERE ""PrcCode"" = '" & sClinicCode & "'"
+            sSql = "SELECT ""U_BankGL"" FROM " & p_oCompDef.sHMDCSAPDbName & ".""@AE_PAYMETHOD"" " & _
+                  " WHERE UPPER(""U_PayMethod"") = '" & sPayMethod.ToUpper & "' AND ""U_ClinicCode"" = '" & sClinicCode & "'"
             If p_iDebugMode = DEBUG_ON Then Call WriteToLogFile_Debug("Executing SQL " & sSql, sFuncName)
             sBank = GetStringValue(sSql, p_oCompDef.sHMDCSAPDbName)
 
