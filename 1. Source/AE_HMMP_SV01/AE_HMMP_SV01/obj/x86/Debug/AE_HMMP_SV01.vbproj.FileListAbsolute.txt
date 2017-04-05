@@ -37,3 +37,9 @@ E:\Abeo-Projects\Abeo_Projects_WorkArea\HMMP\1. Source\AE_HMMP_SV01\AE_HMMP_SV01
 E:\Abeo-Projects\Abeo_Projects_WorkArea\HMMP\1. Source\AE_HMMP_SV01\AE_HMMP_SV01\obj\x86\Debug\AE_HMMP_SV01.exe
 E:\Abeo-Projects\Abeo_Projects_WorkArea\HMMP\1. Source\AE_HMMP_SV01\AE_HMMP_SV01\obj\x86\Debug\AE_HMMP_SV01.xml
 E:\Abeo-Projects\Abeo_Projects_WorkArea\HMMP\1. Source\AE_HMMP_SV01\AE_HMMP_SV01\obj\x86\Debug\AE_HMMP_SV01.pdb
+C:\Solutions_SVN\HMMP\trunk\1. Source\AE_HMMP_SV01\AE_HMMP_SV01\bin\Debug\AE_HMMP_SV01.exe.config
+C:\Solutions_SVN\HMMP\trunk\1. Source\AE_HMMP_SV01\AE_HMMP_SV01\obj\x86\Debug\Interop.SAPbobsCOM.dll
+C:\Solutions_SVN\HMMP\trunk\1. Source\AE_HMMP_SV01\AE_HMMP_SV01\obj\x86\Debug\AE_HMMP_SV01.vbproj.ResolveComReference.cache
+C:\Solutions_SVN\HMMP\trunk\1. Source\AE_HMMP_SV01\AE_HMMP_SV01\obj\x86\Debug\AE_HMMP_SV01.exe
+C:\Solutions_SVN\HMMP\trunk\1. Source\AE_HMMP_SV01\AE_HMMP_SV01\obj\x86\Debug\AE_HMMP_SV01.xml
+C:\Solutions_SVN\HMMP\trunk\1. Source\AE_HMMP_SV01\AE_HMMP_SV01\obj\x86\Debug\AE_HMMP_SV01.pdb

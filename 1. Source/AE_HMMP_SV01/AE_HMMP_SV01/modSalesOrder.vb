@@ -285,6 +285,7 @@ Module modSalesOrder
             Dim oNewDv As DataView = New DataView(odt)
 
             If oNewDv.Count > 0 Then
+                'F5 - Clinic code F18 - Invoice
                 Dim oDtGroup As DataTable = oNewDv.Table.DefaultView.ToTable(True, "F5", "F18", "CostCenter", "IncuredMonth")
                 Console.WriteLine("Grouping datas for insert into Cost accrual table")
                 For i As Integer = 0 To oDtGroup.Rows.Count - 1
