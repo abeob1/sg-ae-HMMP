@@ -43,3 +43,8 @@ C:\Solutions_SVN\HMMP\trunk\1. Source\AE_HMMP_SV01\AE_HMMP_SV01\obj\x86\Debug\AE
 C:\Solutions_SVN\HMMP\trunk\1. Source\AE_HMMP_SV01\AE_HMMP_SV01\obj\x86\Debug\AE_HMMP_SV01.exe
 C:\Solutions_SVN\HMMP\trunk\1. Source\AE_HMMP_SV01\AE_HMMP_SV01\obj\x86\Debug\AE_HMMP_SV01.xml
 C:\Solutions_SVN\HMMP\trunk\1. Source\AE_HMMP_SV01\AE_HMMP_SV01\obj\x86\Debug\AE_HMMP_SV01.pdb
+C:\Solutions_SVN\HMMP\trunk\1. Source\AE_HMMP_SV01\AE_HMMP_SV01\bin\Debug\AE_HMMP_SV01.exe
+C:\Solutions_SVN\HMMP\trunk\1. Source\AE_HMMP_SV01\AE_HMMP_SV01\bin\Debug\AE_HMMP_SV01.pdb
+C:\Solutions_SVN\HMMP\trunk\1. Source\AE_HMMP_SV01\AE_HMMP_SV01\bin\Debug\AE_HMMP_SV01.xml
+C:\Solutions_SVN\HMMP\trunk\1. Source\AE_HMMP_SV01\AE_HMMP_SV01\obj\x86\Debug\AE_HMMP_SV01.Resources.resources
+C:\Solutions_SVN\HMMP\trunk\1. Source\AE_HMMP_SV01\AE_HMMP_SV01\obj\x86\Debug\AE_HMMP_SV01.vbproj.GenerateResource.Cache

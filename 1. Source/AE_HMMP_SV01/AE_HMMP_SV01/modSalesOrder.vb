@@ -8,6 +8,7 @@ Module modSalesOrder
     Private dtMBMSList As DataTable
 
     Public Function ProcessSalesOrders(ByVal file As System.IO.FileInfo, ByVal oDv As DataView, ByRef sErrDesc As String) As Long
+        'Function created to take backup before changing to code to check clinic code exists in TPA table
         Dim sFuncName As String = "ProcessSalesOrders"
         Dim sSQL As String = String.Empty
 
@@ -192,8 +193,8 @@ Module modSalesOrder
             If p_iDebugMode = DEBUG_ON Then Call WriteToLogFile_Debug("Calling RollbackTransaction", sFuncName)
             If RollbackTransaction(sErrDesc) <> RTN_SUCCESS Then Throw New ArgumentException(sErrDesc)
 
-            If p_iDebugMode = DEBUG_ON Then Call WriteToLogFile_Debug("Calling FileMoveToArchive()", sFuncName)
-            FileMoveToArchive(file, file.FullName, RTN_ERROR)
+            'If p_iDebugMode = DEBUG_ON Then Call WriteToLogFile_Debug("Calling FileMoveToArchive()", sFuncName)
+            'FileMoveToArchive(file, file.FullName, RTN_ERROR)
 
             If p_iDebugMode = DEBUG_ON Then Call WriteToLogFile_Debug("Completed with ERROR", sFuncName)
             ProcessSalesOrders = RTN_ERROR
