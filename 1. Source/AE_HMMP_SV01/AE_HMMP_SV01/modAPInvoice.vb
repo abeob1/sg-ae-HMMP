@@ -91,6 +91,11 @@
                         Throw New ArgumentException(sErrDesc)
                     End If
 
+                    Dim sNewClincCode As String = String.Empty
+                    sSql = "SELECT ""U_cln_code"" FROM ""@AE_MS002_PO"" WHERE ""U_invoice"" = '" & sInvoice & "' "
+                    If p_iDebugMode = DEBUG_ON Then Call WriteToLogFile_Debug("Executing SQL " & sSql, sFuncName)
+                    sNewClincCode = GetStringValue(sSql, p_oCompDef.sSAPDBName)
+
                     Dim sNewType As String = String.Empty
                     sSql = "SELECT ""U_Type"" FROM " & p_oCompDef.sSAPDBName & ".""@AE_SOACCRUAL"" WHERE ""U_invoice"" = '" & sInvoice & "' "
                     If p_iDebugMode = DEBUG_ON Then Call WriteToLogFile_Debug("Executing SQL " & sSql, sFuncName)
@@ -125,7 +130,11 @@
                         Throw New ArgumentException(sErrDesc)
                     End If
 
-                    odtDatatable.Rows(intRow)("F2") = sCliniCode.ToUpper()
+                    If sNewClincCode = "" Then
+                        odtDatatable.Rows(intRow)("F2") = sNewClincCode.ToUpper()
+                    Else
+                        odtDatatable.Rows(intRow)("F2") = sCliniCode.ToUpper()
+                    End If
                     odtDatatable.Rows(intRow)("F6") = sCompName
                     odtDatatable.Rows(intRow)("CostCenter") = sCostCenter
                     odtDatatable.Rows(intRow)("Insurer") = sInsurer
@@ -303,6 +312,9 @@
 
             If p_iDebugMode = DEBUG_ON Then Call WriteToLogFile_Debug("Calling RollbackTransaction", sFuncName)
             If RollbackTransaction(sErrDesc) <> RTN_SUCCESS Then Throw New ArgumentException(sErrDesc)
+
+            If p_iDebugMode = DEBUG_ON Then Call WriteToLogFile_Debug("Calling FileMoveToArchive()", sFuncName)
+            FileMoveToArchive(file, file.FullName, RTN_ERROR)
 
             'Insert Error Description into Table
             If p_iDebugMode = DEBUG_ON Then Call WriteToLogFile_Debug("Calling AddDataToTable()", sFuncName)
