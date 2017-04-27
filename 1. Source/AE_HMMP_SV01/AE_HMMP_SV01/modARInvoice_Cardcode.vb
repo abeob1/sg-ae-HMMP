@@ -936,7 +936,8 @@
                 End If
 
                 oSalInvoice.Lines.ItemCode = sItemCode
-                oSalInvoice.Lines.ItemDescription = "Consultation fee for " & dIncuredMnth.Month.ToString() & "-" & dIncuredMnth.Year
+                'oSalInvoice.Lines.ItemDescription = "Consultation fee for " & dIncuredMnth.Month.ToString() & "-" & dIncuredMnth.Year
+                oSalInvoice.Lines.ItemDescription = "Consultation fee for " & dIncuredMnth.ToString("yyyy.MM")
                 oSalInvoice.Lines.Quantity = 1
                 If Not (sVatGroup = String.Empty) Then
                     oSalInvoice.Lines.VatGroup = sVatGroup
