@@ -131,9 +131,9 @@
                     End If
 
                     If sNewClincCode = "" Then
-                        odtDatatable.Rows(intRow)("F2") = sNewClincCode.ToUpper()
-                    Else
                         odtDatatable.Rows(intRow)("F2") = sCliniCode.ToUpper()
+                    Else
+                        odtDatatable.Rows(intRow)("F2") = sNewClincCode.ToUpper()
                     End If
                     odtDatatable.Rows(intRow)("F6") = sCompName
                     odtDatatable.Rows(intRow)("CostCenter") = sCostCenter
