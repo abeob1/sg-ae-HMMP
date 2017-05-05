@@ -1166,7 +1166,7 @@
                                 oJournalEntry.Lines.Credit = dCmoney
                                 If Not sCostCenter = String.Empty Then
                                     oJournalEntry.Lines.CostingCode = sCostCenter
-                                    oJournalEntry.Lines.CostingCode2 = sCostCenter
+                                    'oJournalEntry.Lines.CostingCode2 = sCostCenter
                                 End If
                                 iCount = iCount + 1
                                 bIsLineAdded = True
@@ -1179,7 +1179,7 @@
                                 oJournalEntry.Lines.Debit = dOper
                                 If Not sCostCenter = String.Empty Then
                                     oJournalEntry.Lines.CostingCode = sCostCenter
-                                    oJournalEntry.Lines.CostingCode2 = sCostCenter
+                                    'oJournalEntry.Lines.CostingCode2 = sCostCenter
                                 End If
                                 iCount = iCount + 1
                                 bIsLineAdded = True
@@ -1192,7 +1192,7 @@
                                 oJournalEntry.Lines.Debit = dPayClient
                                 If Not sCostCenter = String.Empty Then
                                     oJournalEntry.Lines.CostingCode = sCostCenter
-                                    oJournalEntry.Lines.CostingCode2 = sCostCenter
+                                    'oJournalEntry.Lines.CostingCode2 = sCostCenter
                                 End If
                                 iCount = iCount + 1
                                 bIsLineAdded = True
@@ -1210,7 +1210,7 @@
                                 oJournalEntry.Lines.Debit = dTotval
                                 If Not sCostCenter = String.Empty Then
                                     oJournalEntry.Lines.CostingCode = sCostCenter
-                                    oJournalEntry.Lines.CostingCode2 = sCostCenter
+                                    'oJournalEntry.Lines.CostingCode2 = sCostCenter
                                 End If
                                 iCount = iCount + 1
                                 bIsLineAdded = True
@@ -1440,7 +1440,7 @@
                             oJournalEntry.Lines.Credit = dCMoneyClient
                             If Not sCostCenter = String.Empty Then
                                 oJournalEntry.Lines.CostingCode = sCostCenter
-                                oJournalEntry.Lines.CostingCode2 = sCostCenter
+                                'oJournalEntry.Lines.CostingCode2 = sCostCenter
                             End If
                             iCount = iCount + 1
                             bIsLineAdded = True
@@ -1453,7 +1453,7 @@
                             oJournalEntry.Lines.Credit = dPayClient
                             If Not sCostCenter = String.Empty Then
                                 oJournalEntry.Lines.CostingCode = sCostCenter
-                                oJournalEntry.Lines.CostingCode2 = sCostCenter
+                                'oJournalEntry.Lines.CostingCode2 = sCostCenter
                             End If
                             iCount = iCount + 1
                             bIsLineAdded = True
@@ -1466,7 +1466,7 @@
                             oJournalEntry.Lines.Debit = dPayClient
                             If Not sCostCenter = String.Empty Then
                                 oJournalEntry.Lines.CostingCode = sCostCenter
-                                oJournalEntry.Lines.CostingCode2 = sCostCenter
+                                'oJournalEntry.Lines.CostingCode2 = sCostCenter
                             End If
                             iCount = iCount + 1
                             bIsLineAdded = True
@@ -1479,7 +1479,7 @@
                             oJournalEntry.Lines.Debit = dOper
                             If Not sCostCenter = String.Empty Then
                                 oJournalEntry.Lines.CostingCode = sCostCenter
-                                oJournalEntry.Lines.CostingCode2 = sCostCenter
+                                'oJournalEntry.Lines.CostingCode2 = sCostCenter
                             End If
                             iCount = iCount + 1
                             bIsLineAdded = True
@@ -1498,7 +1498,7 @@
                             oJournalEntry.Lines.Debit = dTotval
                             If Not sCostCenter = String.Empty Then
                                 oJournalEntry.Lines.CostingCode = sCostCenter
-                                oJournalEntry.Lines.CostingCode2 = sCostCenter
+                                'oJournalEntry.Lines.CostingCode2 = sCostCenter
                             End If
                             iCount = iCount + 1
                             bIsLineAdded = True

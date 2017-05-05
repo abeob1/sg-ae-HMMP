@@ -1104,7 +1104,7 @@
                 oJournalEntry.Lines.Debit = dTotPayCompAmt
                 If Not (sCostCenter = String.Empty) Then
                     oJournalEntry.Lines.CostingCode = sCostCenter
-                    oJournalEntry.Lines.CostingCode2 = sCostCenter
+                    'oJournalEntry.Lines.CostingCode2 = sCostCenter
                 End If
 
                 If oJournalEntry.Add() <> 0 Then
@@ -1497,7 +1497,7 @@
                 oJournalEntry.Lines.Debit = dTotPayCompAmt
                 If Not (sCostCenter = String.Empty) Then
                     oJournalEntry.Lines.CostingCode = sCostCenter
-                    oJournalEntry.Lines.CostingCode2 = sCostCenter
+                    'oJournalEntry.Lines.CostingCode2 = sCostCenter
                 End If
 
                 If oJournalEntry.Add() <> 0 Then

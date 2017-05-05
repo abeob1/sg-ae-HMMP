@@ -542,7 +542,7 @@ Module modSalesOrder
                 oJournalEntry.Lines.Credit = dTotalSal
                 If Not (sCostCenter = String.Empty) Then
                     oJournalEntry.Lines.CostingCode = sCostCenter
-                    oJournalEntry.Lines.CostingCode2 = sCostCenter
+                    ' oJournalEntry.Lines.CostingCode2 = sCostCenter
                 End If
                 If Not (sCostCenter = String.Empty) Then
                     oJournalEntry.Memo = "Estimated Sales for " & sCompCode & " and MBMS " & sCostCenter
@@ -669,7 +669,7 @@ Module modSalesOrder
                 oJournalEntry.Lines.Credit = dTotvalue
                 If Not sCostCenter = String.Empty Then
                     oJournalEntry.Lines.CostingCode = sCostCenter
-                    oJournalEntry.Lines.CostingCode2 = sCostCenter
+                    'oJournalEntry.Lines.CostingCode2 = sCostCenter
                 End If
 
                 oJournalEntry.Lines.Add()
@@ -678,7 +678,7 @@ Module modSalesOrder
                 oJournalEntry.Lines.Debit = dTotvalue
                 If Not sCostCenter = String.Empty Then
                     oJournalEntry.Lines.CostingCode = sCostCenter
-                    oJournalEntry.Lines.CostingCode2 = sCostCenter
+                    'oJournalEntry.Lines.CostingCode2 = sCostCenter
                 End If
 
                 If oJournalEntry.Add() <> 0 Then
@@ -796,7 +796,7 @@ Module modSalesOrder
                 oJournalEntry.Lines.Credit = dTotvalue
                 If Not sCostCenter = String.Empty Then
                     oJournalEntry.Lines.CostingCode = sCostCenter
-                    oJournalEntry.Lines.CostingCode2 = sCostCenter
+                    'oJournalEntry.Lines.CostingCode2 = sCostCenter
                 End If
 
                 oJournalEntry.Lines.Add()
@@ -805,7 +805,7 @@ Module modSalesOrder
                 oJournalEntry.Lines.Debit = dTotvalue
                 If Not sCostCenter = String.Empty Then
                     oJournalEntry.Lines.CostingCode = sCostCenter
-                    oJournalEntry.Lines.CostingCode2 = sCostCenter
+                    'oJournalEntry.Lines.CostingCode2 = sCostCenter
                 End If
 
                 If oJournalEntry.Add() <> 0 Then
@@ -923,7 +923,7 @@ Module modSalesOrder
                 oJournalEntry.Lines.Credit = dTotvalue
                 If Not sCostCenter = String.Empty Then
                     oJournalEntry.Lines.CostingCode = sCostCenter
-                    oJournalEntry.Lines.CostingCode2 = sCostCenter
+                    'oJournalEntry.Lines.CostingCode2 = sCostCenter
                 End If
 
                 oJournalEntry.Lines.Add()
@@ -932,7 +932,7 @@ Module modSalesOrder
                 oJournalEntry.Lines.Debit = dTotvalue
                 If Not sCostCenter = String.Empty Then
                     oJournalEntry.Lines.CostingCode = sCostCenter
-                    oJournalEntry.Lines.CostingCode2 = sCostCenter
+                    'oJournalEntry.Lines.CostingCode2 = sCostCenter
                 End If
 
                 If oJournalEntry.Add() <> 0 Then
