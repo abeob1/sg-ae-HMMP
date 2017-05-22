@@ -927,7 +927,7 @@
 
                 oSalInvoice.CardCode = sCardCode
                 oSalInvoice.DocDate = dt
-                oSalInvoice.DocDueDate = dt
+                'oSalInvoice.DocDueDate = dt
                 oSalInvoice.UserFields.Fields.Item("U_Footer").Value = p_oCompDef.sARInvFooter
                 oSalInvoice.Comments = "Consultation fee for " & dIncuredMnth.Month & " " & dIncuredMnth.Year
 
@@ -1320,7 +1320,7 @@
 
                 oSalInvoice.CardCode = sCardCode
                 oSalInvoice.DocDate = dt
-                oSalInvoice.DocDueDate = dt
+                'oSalInvoice.DocDueDate = dt
                 oSalInvoice.UserFields.Fields.Item("U_Footer").Value = p_oCompDef.sARInvFooter
 
                 If iCount > 1 Then

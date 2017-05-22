@@ -35,3 +35,14 @@ C:\Abeo\HMMP Medjetco interface\Source\AE_HMMP_SV01\AE_HMMP_SV01\bin\Debug\AE_HM
 C:\Abeo\HMMP Medjetco interface\Source\AE_HMMP_SV01\AE_HMMP_SV01\bin\Debug\AE_HMMP_SV01.exe
 C:\Abeo\HMMP Medjetco interface\Source\AE_HMMP_SV01\AE_HMMP_SV01\bin\Debug\AE_HMMP_SV01.pdb
 C:\Abeo\HMMP Medjetco interface\Source\AE_HMMP_SV01\AE_HMMP_SV01\bin\Debug\AE_HMMP_SV01.xml
+E:\SVN\HMMP\1. Source\AE_HMMP_SV01\AE_HMMP_SV01\bin\Debug\AE_HMMP_SV01.exe.config
+E:\SVN\HMMP\1. Source\AE_HMMP_SV01\AE_HMMP_SV01\obj\x86\Release\Interop.SAPbobsCOM.dll
+E:\SVN\HMMP\1. Source\AE_HMMP_SV01\AE_HMMP_SV01\obj\x86\Release\AE_HMMP_SV01.vbproj.ResolveComReference.cache
+E:\SVN\HMMP\1. Source\AE_HMMP_SV01\AE_HMMP_SV01\obj\x86\Release\AE_HMMP_SV01.exe
+E:\SVN\HMMP\1. Source\AE_HMMP_SV01\AE_HMMP_SV01\obj\x86\Release\AE_HMMP_SV01.xml
+E:\SVN\HMMP\1. Source\AE_HMMP_SV01\AE_HMMP_SV01\obj\x86\Release\AE_HMMP_SV01.pdb
+E:\SVN\HMMP\1. Source\AE_HMMP_SV01\AE_HMMP_SV01\bin\Debug\AE_HMMP_SV01.exe
+E:\SVN\HMMP\1. Source\AE_HMMP_SV01\AE_HMMP_SV01\bin\Debug\AE_HMMP_SV01.pdb
+E:\SVN\HMMP\1. Source\AE_HMMP_SV01\AE_HMMP_SV01\bin\Debug\AE_HMMP_SV01.xml
+E:\SVN\HMMP\1. Source\AE_HMMP_SV01\AE_HMMP_SV01\obj\x86\Release\AE_HMMP_SV01.Resources.resources
+E:\SVN\HMMP\1. Source\AE_HMMP_SV01\AE_HMMP_SV01\obj\x86\Release\AE_HMMP_SV01.vbproj.GenerateResource.Cache
