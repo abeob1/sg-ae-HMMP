@@ -1253,7 +1253,7 @@
                             sXcelInvNo = oDtGroup.Rows(k).Item(0).ToString.ToUpper().Trim()
 
                             sQuery = "UPDATE " & p_oCompDef.sSAPDBName & ".""@AE_COSTACCRUAL"" SET ""U_status"" = 'C',""U_RevJournalEntry"" = '" & iJournalEntryNo & "',""U_RevJrnlNo"" = '" & iDocNo & "' " & _
-                                 " WHERE ""U_cln_code"" = '" & sClinicCod & "' AND ""U_source"" = 'MS002' AND ""U_invoice"" = '" & sXcelInvNo & "' AND IFNULL(""U_RevJournalEntry"",'') = '' "
+                                 " WHERE ""U_source"" = 'MS002' AND ""U_invoice"" = '" & sXcelInvNo & "' AND IFNULL(""U_RevJournalEntry"",'') = '' "
                             oRs.DoQuery(sQuery)
 
                         End If
@@ -1539,8 +1539,7 @@
                             Dim sInvoice As String = oDtGroup.Rows(k).Item(0).ToString.ToUpper().Trim()
 
                             sQuery = "UPDATE " & p_oCompDef.sSAPDBName & ".""@AE_COSTACCRUAL"" SET ""U_status"" = 'C',""U_RevJrnlNo"" = '" & iDocNo & "', ""U_RevJournalEntry"" = '" & iJournalEntryNo & "' " & _
-                                     " WHERE ""U_cln_code"" = '" & sClinicCod & "' AND ""U_source"" = 'MS002' " & _
-                                     " AND IFNULL(""U_RevJournalEntry"",'') = '' AND ""U_invoice"" = '" & sInvoice & "'"
+                                     " WHERE ""U_source"" = 'MS002' AND IFNULL(""U_RevJournalEntry"",'') = '' AND ""U_invoice"" = '" & sInvoice & "'"
                             oRs.DoQuery(sQuery)
 
                         End If
