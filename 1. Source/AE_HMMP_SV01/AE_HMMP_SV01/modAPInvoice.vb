@@ -1139,7 +1139,7 @@
                                     If iInvCount > 0 Then
                                         sSql = "SELECT SUM(""U_cmoney"") ""U_cmoney"",SUM(""U_pay_client"") ""U_pay_client"" ,SUM(""U_oper"") ""U_oper""  " & _
                                            " FROM " & p_oCompDef.sSAPDBName & ".""@AE_COSTACCRUAL"" " & _
-                                           " WHERE ""U_invoice"" = '" & sInvoice & "' AND ""U_OcrCode"" = '" & sCostCenter & "' AND ""U_cln_code"" = '" & sClinicCod & "' " & _
+                                           " WHERE ""U_invoice"" = '" & sInvoice & "' AND ""U_OcrCode"" = '" & sCostCenter & "' " & _
                                            " AND ""U_incurred_month"" = '" & sIncurMonth & "' AND IFNULL(""U_RevJournalEntry"",'') = '' "
                                         oRecordSet = p_oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
                                         oRecordSet.DoQuery(sSql)
@@ -1403,7 +1403,7 @@
                                     If iInvCount > 0 Then
                                         sSql = "SELECT SUM(""U_cmoney"") ""U_cmoney"",SUM(""U_pay_client"") ""U_pay_client"" ,SUM(""U_oper"") ""U_oper""  " & _
                                            " FROM ""@AE_COSTACCRUAL"" " & _
-                                           " WHERE ""U_invoice"" = '" & sInvoice & "' AND ""U_OcrCode"" = '" & sCostCenter & "' AND ""U_cln_code"" = '" & sClinicCod & "' " & _
+                                           " WHERE ""U_invoice"" = '" & sInvoice & "' AND ""U_OcrCode"" = '" & sCostCenter & "' " & _
                                            " AND ""U_incurred_month"" = '" & sIncuredMnth & "' AND IFNULL(""U_RevJournalEntry"",'') = '' "
                                         oRecordSet = p_oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
                                         oRecordSet.DoQuery(sSql)
